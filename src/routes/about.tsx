@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import textile from "@/assets/textile.jpg";
-import monsoon from "@/assets/monsoon.jpg";
+import sabarmati from "@/assets/sabarmati-civic-illustration.png.asset.json";
 import { Footer, Header, PageHero, Reveal, RiseLines } from "@/components/site";
+const monsoon = sabarmati.url;
 
 export const Route = createFileRoute("/about")({
   head: () => ({

@@ -4,7 +4,7 @@ import stepwell from "@/assets/stepwell.jpg";
 import textile from "@/assets/textile.jpg";
 import monsoon from "@/assets/monsoon.jpg";
 import streetArt from "@/assets/street-art.jpg";
-import { Footer, Header, Reveal, RiseLines, useParallax } from "@/components/site";
+import { Chakra, Footer, Header, Reveal, RiseLines, TriRule, useParallax } from "@/components/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,12 +110,18 @@ function Home() {
 
       {/* Stepwell asymmetry */}
       <section className="relative bg-card">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-24 md:grid-cols-12 md:px-10 md:py-36">
-          <Reveal mask className="md:col-span-6">
-            <img src={stepwell} alt="Geometric steps of an ancient stepwell" loading="lazy" width={1200} height={1504} className="aspect-[4/5] w-full object-cover" />
+        <div className="jali pointer-events-none absolute inset-0 opacity-60" />
+        <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 py-24 md:grid-cols-12 md:px-10 md:py-36">
+          <Reveal mask className="relative md:col-span-6">
+            <div className="relative overflow-hidden rounded-t-[50%] border-4 border-gold/70 p-2">
+              <img src={stepwell} alt="Geometric steps of an ancient stepwell" loading="lazy" width={1200} height={1504} className="aspect-[4/5] w-full rounded-t-[50%] object-cover" />
+            </div>
+            <Chakra className="anim-spin absolute -bottom-10 -right-6 h-28 w-28 text-indigo" />
+            <p className="mt-4 text-center font-deva text-sm text-muted-foreground">रानी की वाव · पाटन, गुजरात</p>
           </Reveal>
           <div className="flex flex-col justify-center md:col-span-5 md:col-start-8">
-            <p className="label-caps text-primary">02 — Layered by design</p>
+            <p className="label-caps text-primary">02 — Layered by design <span className="font-deva ml-2 normal-case tracking-normal text-base">स्तरीय सत्यापन</span></p>
+            <TriRule className="mt-4" />
             <h2 className="mt-6 font-serif text-5xl leading-[1.02] md:text-7xl">
               <RiseLines lines={["Like a stepwell,", <><em>every level</em></>, "leads to truth."]} />
             </h2>
@@ -159,10 +165,13 @@ function Home() {
       </section>
 
       {/* Textile */}
-      <section className="mx-auto max-w-[1400px] px-6 py-32 md:px-10 md:py-44">
-        <div className="grid items-end gap-12 md:grid-cols-12">
+      <section className="paisley-bg relative overflow-hidden border-y-4 border-double border-primary/40">
+        <Chakra className="anim-spin pointer-events-none absolute -left-40 top-10 h-[34rem] w-[34rem] text-indigo/10" />
+        <div className="relative mx-auto max-w-[1400px] px-6 py-28 md:px-10 md:py-36">
+        <div className="grid items-center gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <p className="label-caps text-primary">04 — Handmade trust</p>
+            <p className="label-caps text-primary">04 — Handmade trust <span className="font-deva ml-2 normal-case tracking-normal text-base">हस्तनिर्मित विश्वास</span></p>
+            <TriRule className="mt-4" />
             <h2 className="mt-6 font-serif text-5xl leading-[1.02] md:text-7xl">
               <RiseLines lines={["Printed by hand,", <>one block <em className="text-primary">at a time.</em></>]} />
             </h2>
@@ -170,11 +179,23 @@ function Home() {
               <p className="mt-10 max-w-md text-lg leading-relaxed text-muted-foreground">
                 Trust is built the way a Bagru artisan builds a pattern — patiently, repeatedly, with nothing left to chance. Each verification is one more impression, until the whole cloth is true.
               </p>
+              <div className="mt-10 grid max-w-md grid-cols-3 border border-primary/30 bg-background/70 text-center">
+                {[["Geotagged", "भू-चिह्नित"], ["Time-stamped", "समय-अंकित"], ["Citizen-signed", "नागरिक-पुष्टि"]].map(([e, h]) => (
+                  <div key={e} className="border-r border-primary/20 p-4 last:border-r-0">
+                    <p className="font-deva text-lg text-primary">{h}</p>
+                    <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{e}</p>
+                  </div>
+                ))}
+              </div>
             </Reveal>
           </div>
           <Reveal mask className="md:col-span-5 md:col-start-8" delay={150}>
-            <img src={textile} alt="An artisan hand block printing indigo and red motifs" loading="lazy" width={1200} height={1504} className="aspect-[4/5] w-full object-cover md:translate-y-24" />
+            <div className="border-8 border-double border-primary/50 bg-background p-3 shadow-2xl">
+              <img src={textile} alt="An artisan hand block printing indigo and red motifs" loading="lazy" width={1200} height={1504} className="aspect-[4/5] w-full object-cover" />
+              <p className="mt-3 text-center font-deva text-sm text-muted-foreground">बगरू ब्लॉक प्रिंट · राजस्थान</p>
+            </div>
           </Reveal>
+        </div>
         </div>
       </section>
 
