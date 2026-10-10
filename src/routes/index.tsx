@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
 import stepwell from "@/assets/stepwell.jpg";
 import textile from "@/assets/textile.jpg";
-import monsoon from "@/assets/monsoon.jpg";
+import sabarmati from "@/assets/sabarmati-civic-illustration.png.asset.json";
 import streetArt from "@/assets/street-art.jpg";
 import { Chakra, Footer, Header, Reveal, RiseLines, TriRule, useParallax } from "@/components/site";
 
@@ -200,18 +200,18 @@ function Home() {
       </section>
 
       {/* Monsoon closing */}
-      <section className="grain relative flex min-h-[90vh] items-center overflow-hidden bg-ink text-ink-foreground">
+      <section className="grain relative flex min-h-[80svh] items-center overflow-hidden bg-ink text-ink-foreground">
         <div ref={monsoonP} className="absolute inset-0">
-          <img src={monsoon} alt="Monsoon clouds over a village and paddy fields" loading="lazy" width={1920} height={1088} className="h-full w-full object-cover opacity-75" />
+          <img src={sabarmati.url} alt="Illustration of civic life along the Sabarmati riverfront" loading="lazy" className="anim-zoom h-full w-full object-cover opacity-70" />
         </div>
         <div className="bg-veil absolute inset-0" />
-        <div className="relative mx-auto w-full max-w-[1400px] px-6 py-32 md:px-10">
-          <p className="font-deva text-2xl text-gold">हर आवाज़ मायने रखती है</p>
-          <h2 className="mt-6 max-w-4xl font-serif text-6xl leading-[0.98] md:text-[7.5rem]">
+        <div className="relative mx-auto w-full max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
+          <p className="font-deva text-xl text-gold md:text-2xl">हर आवाज़ मायने रखती है</p>
+          <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.02] sm:text-5xl md:mt-6 md:text-[7.5rem] md:leading-[0.98]">
             <RiseLines lines={["From the last village", <>to the <em className="text-gold">first office.</em></>]} />
           </h2>
           <Reveal delay={300}>
-            <Link to="/verify" className="label-caps mt-14 inline-block bg-gold px-8 py-4 text-ink transition-transform hover:-translate-y-0.5">Track your grievance</Link>
+            <Link to="/verify" className="label-caps mt-10 inline-block bg-gold px-7 py-3.5 text-ink transition-transform hover:-translate-y-0.5 md:mt-14 md:px-8 md:py-4">Track your grievance</Link>
           </Reveal>
         </div>
       </section>
