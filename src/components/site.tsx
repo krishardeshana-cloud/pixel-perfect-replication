@@ -87,6 +87,24 @@ export function useParallax(speed = 0.15) {
   return ref;
 }
 
+/** 24-spoke Ashoka chakra, drawn in currentColor. */
+export function Chakra({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" aria-hidden>
+      <circle cx="50" cy="50" r="46" strokeWidth="3" />
+      <circle cx="50" cy="50" r="6" fill="currentColor" />
+      {Array.from({ length: 24 }).map((_, i) => (
+        <line key={i} x1="50" y1="50" x2="50" y2="6" strokeWidth="1.6" transform={`rotate(${i * 15} 50 50)`} />
+      ))}
+    </svg>
+  );
+}
+
+/** Thin saffron–white–green rule used under section labels. */
+export function TriRule({ className = "" }: { className?: string }) {
+  return <span className={`tricolor block h-1 w-24 ${className}`} aria-hidden />;
+}
+
 const nav = [
   { to: "/process", label: "Process" },
   { to: "/verify", label: "Verify" },
