@@ -3,6 +3,7 @@ import hero from "@/assets/hero.jpg";
 import stepwell from "@/assets/stepwell.jpg";
 import textile from "@/assets/textile.jpg";
 import monsoon from "@/assets/monsoon.jpg";
+import streetArt from "@/assets/street-art.jpg";
 import { Footer, Header, Reveal, RiseLines, useParallax } from "@/components/site";
 
 export const Route = createFileRoute("/")({
@@ -43,6 +44,43 @@ function Home() {
           </div>
         </div>
         <p className="label-caps absolute bottom-8 left-1/2 -translate-x-1/2 text-ink-foreground/60">Scroll</p>
+      </section>
+
+      {/* Live marquee bands */}
+      <section className="overflow-hidden bg-hot py-5 text-ink-foreground">
+        <div className="anim-marquee flex w-max gap-12 whitespace-nowrap font-deva text-5xl md:text-7xl">
+          {Array.from({ length: 2 }).flatMap((_, k) =>
+            ["सुनवाई", "✺", "न्याय", "✺", "भरोसा", "✺", "सत्य", "✺", "आवाज़", "✺"].map((w, i) => <span key={`${k}-${i}`}>{w}</span>),
+          )}
+        </div>
+      </section>
+      <section className="overflow-hidden bg-saffron py-3 text-ink">
+        <div className="anim-marquee-rev label-caps flex w-max gap-10 whitespace-nowrap !text-sm">
+          {Array.from({ length: 2 }).flatMap((_, k) =>
+            ["Filed", "Routed", "Resolved", "Verified", "Every voice", "Every village"].map((w, i) => <span key={`${k}-${i}`}>{w} ●</span>),
+          )}
+        </div>
+      </section>
+
+      {/* Street art */}
+      <section className="relative overflow-hidden bg-teal text-ink-foreground">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-24 md:grid-cols-12 md:px-10 md:py-32">
+          <div className="relative md:col-span-6">
+            <Reveal mask>
+              <img src={streetArt} alt="Colourful Indian street-art illustration" loading="lazy" className="aspect-square w-full object-cover" />
+            </Reveal>
+            <span className="anim-spin absolute -right-6 -top-6 grid h-28 w-28 place-items-center rounded-full bg-gold font-deva text-3xl text-ink">सच</span>
+          </div>
+          <div className="md:col-span-5 md:col-start-8">
+            <p className="anim-bob font-deva inline-block text-7xl text-gold md:text-9xl">आवाज़</p>
+            <h2 className="mt-6 font-serif text-5xl leading-[1.02] md:text-7xl">
+              <RiseLines lines={["Loud, bright,", <><em className="anim-hue">impossible</em> to ignore.</>]} />
+            </h2>
+            <Reveal delay={200}>
+              <p className="mt-8 max-w-md text-lg text-ink-foreground/85">Like a hand-painted truck that crosses every state, every grievance carries its story all the way home.</p>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       {/* Manifesto */}

@@ -32,6 +32,9 @@
   --color-gold: var(--gold);
   --color-indigo: var(--indigo);
   --color-sandstone: var(--sandstone);
+  --color-hot: var(--hot);
+  --color-teal: var(--teal);
+  --color-saffron: var(--saffron);
   --font-display: "Yatra One", serif;
   --font-serif: "Instrument Serif", serif;
   --font-sans: "Hanken Grotesk", sans-serif;
@@ -123,6 +126,21 @@
 .anim-rise { animation: rise-in 1.6s var(--ease-silk) both; }
 .anim-fade { animation: fade-in 1.8s var(--ease-silk) both; }
 .anim-zoom { animation: slow-zoom 3.2s var(--ease-silk) both; }
+
+/* Live street-art motion */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-14px) rotate(3deg); } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes hue { 0%,100% { color: var(--hot); } 33% { color: var(--gold); } 66% { color: var(--teal); } }
+.anim-marquee { animation: marquee 28s linear infinite; }
+.anim-marquee-rev { animation: marquee 34s linear infinite reverse; }
+.anim-bob { animation: bob 4s ease-in-out infinite; }
+.anim-spin { animation: spin-slow 22s linear infinite; }
+.anim-hue { animation: hue 6s ease-in-out infinite; }
+:root { --hot: oklch(0.62 0.24 0); --teal: oklch(0.62 0.12 190); --saffron: oklch(0.72 0.19 55); }
+@media (prefers-reduced-motion: reduce) {
+  .anim-marquee, .anim-marquee-rev, .anim-bob, .anim-spin, .anim-hue { animation: none !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-mask, .line-rise > span { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
