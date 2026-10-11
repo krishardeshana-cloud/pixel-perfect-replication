@@ -35,6 +35,10 @@
   --color-hot: var(--hot);
   --color-teal: var(--teal);
   --color-saffron: var(--saffron);
+  --color-civic-green: var(--civic-green);
+  --color-civic-blue: var(--civic-blue);
+  --color-civic-surface: var(--civic-surface);
+  --color-civic-warning: var(--civic-warning);
   --font-display: "Yatra One", serif;
   --font-serif: "Instrument Serif", serif;
   --font-sans: "Hanken Grotesk", sans-serif;
@@ -43,17 +47,17 @@
 
 :root {
   --radius: 2px;
-  --background: oklch(0.965 0.018 80);       /* parchment */
+  --background: oklch(0.99 0.003 80);
   --foreground: oklch(0.22 0.025 45);        /* kohl brown */
-  --card: oklch(0.94 0.025 75);
+  --card: oklch(0.975 0.005 80);
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
   --primary: oklch(0.5 0.14 38);             /* sandstone red */
   --primary-foreground: oklch(0.97 0.015 80);
-  --secondary: oklch(0.91 0.03 75);
+  --secondary: oklch(0.95 0.008 80);
   --secondary-foreground: var(--foreground);
-  --muted: oklch(0.92 0.025 75);
+  --muted: oklch(0.955 0.006 80);
   --muted-foreground: oklch(0.45 0.03 50);
   --accent: oklch(0.8 0.12 78);              /* marigold */
   --accent-foreground: var(--foreground);
@@ -67,6 +71,11 @@
   --gold: oklch(0.84 0.11 80);
   --indigo: oklch(0.32 0.08 260);
   --sandstone: oklch(0.5 0.14 38);
+  --civic-green: oklch(0.43 0.075 160);
+  --civic-blue: oklch(0.43 0.08 260);
+  --civic-surface: oklch(0.975 0.006 160);
+  --civic-warning: oklch(0.48 0.11 70);
+  --shadow-civic: 0 8px 24px color-mix(in oklab, var(--foreground) 5%, transparent);
 
   --gradient-gold: linear-gradient(180deg, oklch(0.98 0.02 90) 0%, oklch(0.88 0.09 82) 55%, oklch(0.78 0.13 70) 100%);
   --gradient-veil: linear-gradient(180deg, oklch(0.17 0.02 45 / 0.35) 0%, oklch(0.17 0.02 45 / 0.05) 40%, oklch(0.17 0.02 45 / 0.75) 100%);
@@ -96,7 +105,7 @@
 @utility label-caps {
   font-family: var(--font-sans);
   font-size: 0.7rem;
-  letter-spacing: 0.42em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 @utility grain {
@@ -128,7 +137,7 @@
 .line-rise > span { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease-silk); }
 .line-rise.is-in > span { transform: none; }
 
-@keyframes rise-in { from { opacity: 0; transform: translateY(40px); letter-spacing: 0.02em; } to { opacity: 1; transform: none; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slow-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
 .anim-rise { animation: rise-in 1.6s var(--ease-silk) both; }
@@ -146,6 +155,20 @@
 .anim-spin { animation: spin-slow 22s linear infinite; }
 .anim-hue { animation: hue 6s ease-in-out infinite; }
 :root { --hot: oklch(0.62 0.24 0); --teal: oklch(0.62 0.12 190); --saffron: oklch(0.72 0.19 55); }
+.civic-card { border-top: 3px solid var(--civic-blue); transition: transform 250ms var(--ease-silk), box-shadow 250ms var(--ease-silk); }
+.civic-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-civic); }
+.civic-card--red { border-top-color: var(--primary); }
+.civic-card--green { border-top-color: var(--civic-green); }
+.civic-icon { color: var(--civic-blue); background: color-mix(in oklab, var(--civic-blue) 7%, transparent); }
+.civic-card--red .civic-icon { color: var(--primary); background: color-mix(in oklab, var(--primary) 7%, transparent); }
+.civic-card--green .civic-icon { color: var(--civic-green); background: color-mix(in oklab, var(--civic-green) 7%, transparent); }
+.civic-watermark { color: color-mix(in oklab, var(--civic-blue) 5%, transparent); }
+.verification-record { box-shadow: var(--shadow-civic); border-top: 3px solid var(--civic-green); }
+.civic-proof-band { background-image: repeating-linear-gradient(90deg, transparent 0 39px, color-mix(in oklab, var(--border) 15%, transparent) 39px 40px); }
+.dashboard-enter { animation: rise-in 600ms var(--ease-silk) both; }
+@keyframes live-pulse { 50% { opacity: .4; } }
+.live-pulse { animation: live-pulse 2.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .dashboard-enter, .live-pulse { animation: none; } .civic-card { transition: none; } }
 @media (prefers-reduced-motion: reduce) {
   .anim-marquee, .anim-marquee-rev, .anim-bob, .anim-spin, .anim-hue { animation: none !important; }
 }
