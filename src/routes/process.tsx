@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import stepwell from "@/assets/stepwell.jpg";
+import sabarmati from "@/assets/sabarmati-civic-illustration.png.asset.json";
 import { Footer, Header, PageHero, Reveal, RiseLines } from "@/components/site";
 
 export const Route = createFileRoute("/process")({
@@ -7,6 +7,10 @@ export const Route = createFileRoute("/process")({
     meta: [
       { title: "Process — Bharat Grievance Verifier" },
       { name: "description", content: "Four steps from filing to verified resolution: file, route, resolve, verify." },
+      { property: "og:image", content: sabarmati.url },
+      { name: "twitter:image", content: sabarmati.url },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "How Bharat verifies a grievance" },
       { property: "og:description", content: "File, route, resolve, verify — every step on the record." },
     ],
@@ -25,7 +29,7 @@ function Process() {
   return (
     <main>
       <Header />
-      <PageHero kicker="The process" deva="प्रक्रिया" image={stepwell} lines={["Four steps.", <><em className="text-gold">No shortcuts.</em></>]} intro="Every grievance descends through the same four levels — and only rises again once the truth is confirmed." />
+      <PageHero kicker="The process" deva="प्रक्रिया" image={sabarmati.url} lines={["Four steps.", <><em className="text-gold">No shortcuts.</em></>]} intro="From the first record to the final confirmation, every stage should make responsibility and action clear." />
 
       <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-36">
         {steps.map((s, i) => (

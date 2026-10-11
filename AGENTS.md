@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep reusable civic presentation primitives in `src/components/civic.tsx`; shared cards and records ensure consistent citizen-facing design.
+- Use Embla with its Auto Scroll plugin for continuous carousels; provide pause, keyboard-accessible controls and reduced-motion support.
+- Keep dashboard sample data and pure filtering/report helpers separate from the route; clearly distinguish illustrative records from real citizen data.

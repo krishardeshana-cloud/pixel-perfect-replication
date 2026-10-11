@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -76,7 +78,9 @@ export function useParallax(speed = 0.15) {
       raf = requestAnimationFrame(() => {
         const el = ref.current;
         if (!el) return;
-        const r = el.parentElement!.getBoundingClientRect();
+        const parent = el.parentElement;
+        if (!parent) return;
+        const r = parent.getBoundingClientRect();
         el.style.transform = `translate3d(0, ${(r.top + r.height / 2 - window.innerHeight / 2) * -speed}px, 0) scale(1.15)`;
       });
     };
@@ -109,6 +113,7 @@ const nav = [
   { to: "/process", label: "Process" },
   { to: "/verify", label: "Verify" },
   { to: "/about", label: "About" },
+  { to: "/dashboard", label: "Dashboard" },
 ] as const;
 
 export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
@@ -116,23 +121,19 @@ export function Header({ tone = "light" }: { tone?: "light" | "dark" }) {
   const fg = tone === "light" ? "text-ink-foreground" : "text-foreground";
   return (
     <header className={`absolute inset-x-0 top-0 z-30 ${fg}`}>
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 md:px-10">
-        <Link to="/" className="font-display text-3xl leading-none" aria-label="Bharat home">
-          bharat
+      <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-6 md:flex md:justify-between md:px-10">
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Bharat home">
+          <Chakra className="h-8 w-8 shrink-0" /><span className="font-display text-3xl leading-none">bharat</span>
         </Link>
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="label-caps opacity-80 transition-opacity hover:opacity-100" activeProps={{ className: "opacity-100 underline underline-offset-8" }}>
               {n.label}
             </Link>
           ))}
-          <Link to="/verify" className={`label-caps border px-5 py-3 transition-colors ${tone === "light" ? "border-ink-foreground/50 hover:bg-ink-foreground hover:text-ink" : "border-foreground/40 hover:bg-foreground hover:text-background"}`}>
-            Track a case
-          </Link>
+          <Button asChild variant="outline" className={`h-11 bg-transparent ${tone === "light" ? "border-ink-foreground/50 text-ink-foreground hover:bg-ink-foreground hover:text-ink" : "border-foreground/40 text-foreground"}`}><Link to="/verify">Track a case <ArrowUpRight /></Link></Button>
         </nav>
-        <button className="label-caps md:hidden" onClick={() => setOpen(!open)} aria-expanded={open}>
-          {open ? "Close" : "Menu"}
-        </button>
+        <Button variant="ghost" size="icon" className="shrink-0 md:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <X /> : <Menu />}</Button>
       </div>
       {open && (
         <nav className="mx-6 flex flex-col gap-5 bg-ink p-8 text-ink-foreground md:hidden">
@@ -170,16 +171,16 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="label-caps text-ink-foreground/50">Reach</p>
+               <p className="label-caps text-ink-foreground/50">Citizen access</p>
               <ul className="mt-5 space-y-3 text-ink-foreground/80">
-                <li>Helpline 1800-000-0000</li>
-                <li>New Delhi, India</li>
+                 <li><Link to="/dashboard" className="hover:text-gold">My grievances</Link></li>
+                 <li><Link to="/verify" className="hover:text-gold">Track a case</Link></li>
               </ul>
             </div>
           </div>
         </div>
         <div className="mt-24 overflow-hidden">
-          <p className="font-display text-gold-gradient select-none text-[24vw] leading-[0.8]">bharat</p>
+          <p className="font-display text-gold-gradient select-none text-7xl leading-[0.9] sm:text-[9rem] md:text-[14rem]">bharat</p>
         </div>
         <div className="mt-8 flex flex-col justify-between gap-3 border-t border-ink-foreground/15 pt-6 text-sm text-ink-foreground/50 md:flex-row">
           <span>© 2026 Bharat Grievance Verifier System</span>
@@ -200,7 +201,7 @@ export function PageHero({ kicker, deva, lines, intro, image }: { kicker: string
       <div className="bg-veil absolute inset-0" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 md:px-10">
         <p className="label-caps anim-fade text-gold">{kicker} <span className="font-deva ml-3 tracking-normal normal-case text-base">{deva}</span></p>
-        <h1 className="mt-6 font-serif text-6xl leading-[0.95] md:text-[8.5rem]">
+        <h1 className="mt-6 font-serif text-4xl leading-tight sm:text-6xl md:text-[6rem] md:leading-[1.05]">
           <RiseLines lines={lines} />
         </h1>
         <p className="anim-fade mt-8 max-w-md text-lg text-ink-foreground/80" style={{ animationDelay: "600ms" }}>{intro}</p>
