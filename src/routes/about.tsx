@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import textile from "@/assets/textile.jpg";
+import { VerificationRecord } from "@/components/civic";
 import sabarmati from "@/assets/sabarmati-civic-illustration.png.asset.json";
 import { Footer, Header, PageHero, Reveal, RiseLines } from "@/components/site";
 const monsoon = sabarmati.url;
@@ -9,6 +9,10 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "About — Bharat Grievance Verifier" },
       { name: "description", content: "Why Bharat exists: closing the gap between grievances closed on paper and problems solved on the ground." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: sabarmati.url },
+      { name: "twitter:image", content: sabarmati.url },
       { property: "og:title", content: "About Bharat" },
       { property: "og:description", content: "Closing the gap between paper and ground truth." },
     ],
@@ -42,7 +46,7 @@ function About() {
           </Reveal>
         </div>
         <Reveal mask className="md:col-span-4 md:col-start-9 md:mt-24">
-          <img src={textile} alt="Block printed cotton with indigo motifs" loading="lazy" width={1200} height={1504} className="aspect-[3/4] w-full object-cover" />
+          <VerificationRecord />
         </Reveal>
       </section>
 
@@ -52,8 +56,8 @@ function About() {
           <div className="mt-14 grid md:grid-cols-2">
             {principles.map(([t, d, p], i) => (
               <Reveal key={t} delay={(i % 2) * 150} className="border-t border-ink-foreground/15 py-12 md:pr-16">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-serif text-5xl">{t}</h3>
+                <div className="grid min-w-0 gap-3 sm:flex sm:items-baseline sm:justify-between">
+                  <h3 className="font-serif text-4xl sm:text-5xl">{t}</h3>
                   <span className="font-deva text-xl text-gold">{d}</span>
                 </div>
                 <p className="mt-4 max-w-md text-ink-foreground/70">{p}</p>

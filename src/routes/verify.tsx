@@ -7,6 +7,8 @@ export const Route = createFileRoute("/verify")({
     meta: [
       { title: "Track a Grievance — Bharat" },
       { name: "description", content: "Enter your case number to see each stage of your grievance, from filing to verified resolution." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Track your grievance — Bharat" },
       { property: "og:description", content: "See every stage of your case, on the record." },
     ],
