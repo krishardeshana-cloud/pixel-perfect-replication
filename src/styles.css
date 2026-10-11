@@ -168,6 +168,10 @@
 .dashboard-enter { animation: rise-in 600ms var(--ease-silk) both; }
 @keyframes live-pulse { 50% { opacity: .4; } }
 .live-pulse { animation: live-pulse 2.5s ease-in-out infinite; }
+.report-progress { appearance: none; border: none; background: var(--secondary); border-radius: 2px; overflow: hidden; }
+.report-progress::-webkit-progress-bar { background: var(--secondary); }
+.report-progress::-webkit-progress-value { background: var(--civic-blue); transition: width 600ms var(--ease-silk); }
+.report-progress::-moz-progress-bar { background: var(--civic-blue); }
 @media (prefers-reduced-motion: reduce) { .dashboard-enter, .live-pulse { animation: none; } .civic-card { transition: none; } }
 @media (prefers-reduced-motion: reduce) {
   .anim-marquee, .anim-marquee-rev, .anim-bob, .anim-spin, .anim-hue { animation: none !important; }
