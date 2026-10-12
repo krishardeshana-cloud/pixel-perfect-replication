@@ -5,3 +5,5 @@
 - [x] Build a formal Indian-inspired dashboard with reports, filtering, grievance details and tracking (sample data).
 - [x] Add a cohesive Indian civic photo to every service card.
 - [x] Refine dashboard theming with professional view toggles and restrained hover/motion details.
+- [ ] Improve civic photos and make carousel cards compact with correctly fitted images.
+- [ ] Add a soft green, Chakra-blue and orange footer wordmark hover animation.
