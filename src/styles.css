@@ -76,6 +76,9 @@
   --civic-surface: oklch(0.975 0.006 160);
   --civic-warning: oklch(0.48 0.11 70);
   --shadow-civic: 0 8px 24px color-mix(in oklab, var(--foreground) 5%, transparent);
+  --wordmark-green: oklch(0.72 0.14 150);
+  --wordmark-blue: oklch(0.69 0.16 264);
+  --wordmark-orange: oklch(0.78 0.16 58);
 
   --gradient-gold: linear-gradient(180deg, oklch(0.98 0.02 90) 0%, oklch(0.88 0.09 82) 55%, oklch(0.78 0.13 70) 100%);
   --gradient-veil: linear-gradient(180deg, oklch(0.17 0.02 45 / 0.35) 0%, oklch(0.17 0.02 45 / 0.05) 40%, oklch(0.17 0.02 45 / 0.75) 100%);
@@ -158,11 +161,24 @@
 .civic-card { border-top: 3px solid var(--civic-blue); transition: transform 250ms var(--ease-silk), box-shadow 250ms var(--ease-silk); }
 .civic-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-civic); }
 .service-photo-frame { position: relative; background: var(--secondary); }
-.service-photo { position: absolute; inset-block: 0; height: 100%; width: 300%; max-width: none; object-fit: cover; filter: saturate(.82) contrast(1.03); transition: transform 700ms var(--ease-silk), filter 400ms ease; }
-.service-photo--left { left: 0; }
-.service-photo--center { left: -100%; }
-.service-photo--right { left: -200%; }
+.service-photo { display: block; height: 100%; width: 100%; object-fit: cover; object-position: center; filter: saturate(.88); transition: transform 700ms var(--ease-silk), filter 400ms ease; }
 .civic-card:hover .service-photo { transform: scale(1.035); filter: saturate(.96) contrast(1.03); }
+.footer-wordmark { padding-block: .06em; }
+.footer-wordmark-part { transition: transform 950ms var(--ease-silk), color 950ms ease, filter 950ms ease; }
+.footer-wordmark-green { color: var(--wordmark-green); }
+.footer-wordmark-blue { color: var(--wordmark-blue); transition-delay: 70ms; }
+.footer-wordmark-orange { color: var(--wordmark-orange); transition-delay: 140ms; }
+.footer-wordmark-chakra { width: .72em; height: .72em; left: 50%; top: 50%; opacity: 0; transform: translate(-50%, -50%) rotate(-18deg); transition: opacity 1200ms ease, transform 1600ms var(--ease-silk); }
+.footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-part { transform: translateY(-.018em); filter: drop-shadow(0 0 12px color-mix(in oklab, currentColor 16%, transparent)); }
+.footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-green { color: color-mix(in oklab, var(--wordmark-green) 88%, var(--ink-foreground)); }
+.footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-blue { color: color-mix(in oklab, var(--wordmark-blue) 88%, var(--ink-foreground)); }
+.footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-orange { color: color-mix(in oklab, var(--wordmark-orange) 88%, var(--ink-foreground)); }
+.footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-chakra { opacity: .18; transform: translate(-50%, -50%) rotate(18deg); }
+@media (prefers-reduced-motion: reduce) {
+  .footer-wordmark-part, .footer-wordmark-chakra { transition: none; }
+  .footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-part { transform: none; }
+  .footer-wordmark:is(:hover, :focus-visible) .footer-wordmark-chakra { transform: translate(-50%, -50%); }
+}
 .civic-card--red { border-top-color: var(--primary); }
 .civic-card--green { border-top-color: var(--civic-green); }
 .civic-icon { color: var(--civic-blue); background: color-mix(in oklab, var(--civic-blue) 7%, transparent); }

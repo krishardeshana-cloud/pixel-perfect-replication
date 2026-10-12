@@ -180,7 +180,11 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-24 overflow-hidden">
-          <p className="font-display text-gold-gradient select-none text-7xl leading-[0.9] sm:text-[9rem] md:text-[14rem]">bharat</p>
+          <Link to="/" aria-label="Bharat home" className="footer-wordmark font-display relative inline-flex select-none text-7xl leading-[1.1] focus-visible:outline-2 focus-visible:outline-ring sm:text-[9rem] md:text-[14rem]">
+            <span className="footer-wordmark-part footer-wordmark-green">bh</span>
+            <span className="footer-wordmark-part footer-wordmark-blue relative"><Chakra className="footer-wordmark-chakra pointer-events-none absolute" /><span className="relative">ar</span></span>
+            <span className="footer-wordmark-part footer-wordmark-orange">at</span>
+          </Link>
         </div>
         <div className="mt-8 flex flex-col justify-between gap-3 border-t border-ink-foreground/15 pt-6 text-sm text-ink-foreground/50 md:flex-row">
           <span>© 2026 Bharat Grievance Verifier System</span>
