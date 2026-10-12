@@ -5,6 +5,8 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import { ArrowLeft, ArrowRight, Check, Droplets, FileCheck2, Landmark, Lightbulb, MapPin, Pause, Play, Route, ShieldCheck, Trash2, Waypoints, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Chakra, TriRule } from "@/components/site";
+import civicServicesA from "@/assets/civic-services-a.jpg";
+import civicServicesB from "@/assets/civic-services-b.jpg";
 
 export function SectionHeading({ number, label, hindi, title, children }: { number: string; label: string; hindi: string; title: string; children?: ReactNode }) {
   return <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,360px)] md:items-end">
@@ -13,9 +15,13 @@ export function SectionHeading({ number, label, hindi, title, children }: { numb
   </div>;
 }
 
-type CivicCardProps = { number: string; title: string; hindi: string; description: string; icon: LucideIcon; tone?: "red" | "green" | "blue" };
-export function CivicCard({ number, title, hindi, description, icon: Icon, tone = "blue" }: CivicCardProps) {
+type CivicCardProps = { number: string; title: string; hindi: string; description: string; icon: LucideIcon; image: string; crop: "left" | "center" | "right"; alt: string; tone?: "red" | "green" | "blue" };
+export function CivicCard({ number, title, hindi, description, icon: Icon, image, crop, alt, tone = "blue" }: CivicCardProps) {
   return <article className={`civic-card civic-card--${tone} group relative flex h-full flex-col overflow-hidden rounded-md border border-border bg-background p-7`}>
+    <div className="service-photo-frame -mx-7 -mt-7 mb-6 h-40 overflow-hidden border-b border-border">
+      <img src={image} alt={alt} loading="lazy" width={1536} height={768} className={`service-photo service-photo--${crop}`} />
+      <span className="absolute bottom-3 left-3 rounded-sm bg-ink/85 px-2 py-1 text-[10px] font-medium text-ink-foreground">PUBLIC SERVICE / जन सेवा</span>
+    </div>
     <div className="flex items-center justify-between"><span className="civic-icon grid h-12 w-12 place-items-center rounded-md"><Icon size={23} strokeWidth={1.5} /></span><span className="font-sans text-xs tabular-nums text-muted-foreground">/{number}</span></div>
     <Chakra className="civic-watermark pointer-events-none absolute -right-5 top-20 h-28 w-28" />
     <p className="font-deva relative mt-8 text-lg text-muted-foreground">{hindi}</p>
@@ -26,12 +32,12 @@ export function CivicCard({ number, title, hindi, description, icon: Icon, tone 
 }
 
 const services: CivicCardProps[] = [
-  { number: "01", title: "Roads & public works", hindi: "सड़क एवं लोक निर्माण", description: "Damaged roads, unsafe footpaths and unfinished repairs in your neighbourhood.", icon: Route, tone: "red" },
-  { number: "02", title: "Water supply", hindi: "जल आपूर्ति", description: "Interrupted supply, leaking pipelines and concerns about drinking water.", icon: Droplets, tone: "blue" },
-  { number: "03", title: "Sanitation", hindi: "स्वच्छता", description: "Uncollected waste, blocked drains and maintenance of public spaces.", icon: Trash2, tone: "green" },
-  { number: "04", title: "Street lighting", hindi: "सड़क प्रकाश", description: "Faulty streetlights and poorly lit roads that affect everyday safety.", icon: Lightbulb, tone: "red" },
-  { number: "05", title: "Public services", hindi: "जन सेवाएँ", description: "Delays in public services, unanswered requests and unresolved applications.", icon: Landmark, tone: "blue" },
-  { number: "06", title: "Community spaces", hindi: "सार्वजनिक स्थल", description: "Maintenance of parks, shared facilities and accessible public spaces.", icon: Waypoints, tone: "green" },
+  { number: "01", title: "Roads & public works", hindi: "सड़क एवं लोक निर्माण", description: "Damaged roads, unsafe footpaths and unfinished repairs in your neighbourhood.", icon: Route, image: civicServicesA, crop: "left", alt: "Municipal road crew repairing a city street", tone: "red" },
+  { number: "02", title: "Water supply", hindi: "जल आपूर्ति", description: "Interrupted supply, leaking pipelines and concerns about drinking water.", icon: Droplets, image: civicServicesA, crop: "center", alt: "Municipal worker inspecting a public water pipeline", tone: "blue" },
+  { number: "03", title: "Sanitation", hindi: "स्वच्छता", description: "Uncollected waste, blocked drains and maintenance of public spaces.", icon: Trash2, image: civicServicesA, crop: "right", alt: "Sanitation workers cleaning a neighbourhood market", tone: "green" },
+  { number: "04", title: "Street lighting", hindi: "सड़क प्रकाश", description: "Faulty streetlights and poorly lit roads that affect everyday safety.", icon: Lightbulb, image: civicServicesB, crop: "left", alt: "Municipal electrician repairing a streetlight", tone: "red" },
+  { number: "05", title: "Public services", hindi: "जन सेवाएँ", description: "Delays in public services, unanswered requests and unresolved applications.", icon: Landmark, image: civicServicesB, crop: "center", alt: "Citizens receiving help at a public service office", tone: "blue" },
+  { number: "06", title: "Community spaces", hindi: "सार्वजनिक स्थल", description: "Maintenance of parks, shared facilities and accessible public spaces.", icon: Waypoints, image: civicServicesB, crop: "right", alt: "Workers maintaining an accessible public park", tone: "green" },
 ];
 
 export function ServicesCarousel() {

@@ -157,6 +157,12 @@
 :root { --hot: oklch(0.62 0.24 0); --teal: oklch(0.62 0.12 190); --saffron: oklch(0.72 0.19 55); }
 .civic-card { border-top: 3px solid var(--civic-blue); transition: transform 250ms var(--ease-silk), box-shadow 250ms var(--ease-silk); }
 .civic-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-civic); }
+.service-photo-frame { position: relative; background: var(--secondary); }
+.service-photo { position: absolute; inset-block: 0; height: 100%; width: 300%; max-width: none; object-fit: cover; filter: saturate(.82) contrast(1.03); transition: transform 700ms var(--ease-silk), filter 400ms ease; }
+.service-photo--left { left: 0; }
+.service-photo--center { left: -100%; }
+.service-photo--right { left: -200%; }
+.civic-card:hover .service-photo { transform: scale(1.035); filter: saturate(.96) contrast(1.03); }
 .civic-card--red { border-top-color: var(--primary); }
 .civic-card--green { border-top-color: var(--civic-green); }
 .civic-icon { color: var(--civic-blue); background: color-mix(in oklab, var(--civic-blue) 7%, transparent); }
@@ -166,13 +172,26 @@
 .verification-record { box-shadow: var(--shadow-civic); border-top: 3px solid var(--civic-green); }
 .civic-proof-band { background-image: repeating-linear-gradient(90deg, transparent 0 39px, color-mix(in oklab, var(--border) 15%, transparent) 39px 40px); }
 .dashboard-enter { animation: rise-in 600ms var(--ease-silk) both; }
+.dashboard-nav { position: relative; overflow: hidden; transition: color 220ms ease, background-color 220ms ease, transform 220ms ease; }
+.dashboard-nav::after { content: ""; position: absolute; background: var(--primary); transition: transform 320ms var(--ease-silk); transform: scaleX(0); transform-origin: left; }
+.dashboard-nav.is-active::after { transform: scaleX(1); }
+.dashboard-stat { position: relative; overflow: hidden; transition: transform 280ms var(--ease-silk), border-color 280ms ease, box-shadow 280ms ease; }
+.dashboard-stat::after { content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 2px; background: var(--civic-blue); transform: scaleX(0); transform-origin: left; transition: transform 360ms var(--ease-silk); }
+.dashboard-stat:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--civic-blue) 30%, var(--border)); box-shadow: var(--shadow-civic); }
+.dashboard-stat:hover::after { transform: scaleX(1); }
+.dashboard-stat-icon { transition: transform 300ms var(--ease-silk); }
+.dashboard-stat:hover .dashboard-stat-icon { transform: rotate(-4deg) scale(1.04); }
+.dashboard-priority { transition: transform 300ms var(--ease-silk), box-shadow 300ms ease; }
+.dashboard-priority:hover { transform: translateX(3px); box-shadow: var(--shadow-civic); }
+@media (min-width: 1024px) { .dashboard-nav::after { inset-block: 7px; left: 0; width: 2px; transform: scaleY(0); } .dashboard-nav.is-active::after { transform: scaleY(1); } }
+@media (max-width: 1023px) { .dashboard-nav::after { inset-inline: 8px; bottom: 0; height: 2px; } }
 @keyframes live-pulse { 50% { opacity: .4; } }
 .live-pulse { animation: live-pulse 2.5s ease-in-out infinite; }
 .report-progress { appearance: none; border: none; background: var(--secondary); border-radius: 2px; overflow: hidden; }
 .report-progress::-webkit-progress-bar { background: var(--secondary); }
 .report-progress::-webkit-progress-value { background: var(--civic-blue); transition: width 600ms var(--ease-silk); }
 .report-progress::-moz-progress-bar { background: var(--civic-blue); }
-@media (prefers-reduced-motion: reduce) { .dashboard-enter, .live-pulse { animation: none; } .civic-card { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .dashboard-enter, .live-pulse { animation: none; } .civic-card, .service-photo, .dashboard-nav, .dashboard-stat, .dashboard-stat::after, .dashboard-stat-icon, .dashboard-priority { transition: none; } }
 @media (prefers-reduced-motion: reduce) {
   .anim-marquee, .anim-marquee-rev, .anim-bob, .anim-spin, .anim-hue { animation: none !important; }
 }
